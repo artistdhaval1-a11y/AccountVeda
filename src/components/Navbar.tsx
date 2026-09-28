@@ -136,9 +136,12 @@ export default function Navbar({
           </button>
           <button
             id="mobile-menu-btn"
-            onClick={() => setIsOpen(!isOpen)}
+            type="button"
+            onClick={() => setIsOpen((open) => !open)}
             className="p-2 text-primary hover:bg-light rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20"
-            aria-label="Toggle Menu"
+            aria-label={isOpen ? "Close Menu" : "Open Menu"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-nav-panel"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -148,15 +151,25 @@ export default function Navbar({
       {/* Mobile Drawer */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            id="mobile-nav-panel"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25 }}
-            className="lg:hidden bg-white border-t border-gray-100 shadow-xl overflow-hidden"
-          >
-            <ul className="px-6 py-6 flex flex-col gap-4">
+          <>
+            <motion.button
+              type="button"
+              aria-label="Close menu"
+              onClick={() => setIsOpen(false)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="lg:hidden fixed inset-0 top-20 bg-black/10 cursor-default"
+            />
+            <motion.div
+              id="mobile-nav-panel"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2 }}
+              className="lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-xl max-h-[calc(100vh-5rem)] overflow-y-auto overscroll-contain"
+            >
+              <ul className="px-6 py-6 flex flex-col gap-4">
               {navItems.map((item) => (
                 <li key={item.id}>
                   <button
