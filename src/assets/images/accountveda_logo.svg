@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="100%" height="100%">
+  <!-- Deep Rich Purple Background from User's Logo -->
+  <rect width="1000" height="1000" fill="#1b004c" />
+  
+  <defs>
+    <!-- Mask to create the overlapping gap in the thick bands -->
+    <mask id="gap-mask">
+      <!-- Everything white by default (visible) -->
+      <rect x="0" y="0" width="1000" height="1000" fill="#ffffff" />
+      <!-- Black stroke along the diagonal line to cut the thick bands -->
+      <line x1="50" y1="950" x2="950" y2="350" stroke="#000000" stroke-width="48" stroke-linecap="square" />
+    </mask>
+  </defs>
+
+  <!-- Group of thick bands with mask applied -->
+  <g mask="url(#gap-mask)">
+    <!-- First Thick Band (Right leg of 'A' / Left leg of 'V') -->
+    <polygon points="180,50 300,50 600,950 480,950" fill="#ffffff" />
+    
+    <!-- Second Thick Band (Parallel to first, completing 'V') -->
+    <polygon points="495,50 615,50 915,950 795,950" fill="#ffffff" />
+  </g>
+
+  <!-- Complete Square Frame with white outline -->
+  <rect x="50" y="50" width="900" height="900" fill="none" stroke="#ffffff" stroke-width="16" stroke-linecap="square" stroke-linejoin="miter" />
+
+  <!-- Thin horizontal crossbar of A -->
+  <line x1="50" y1="810" x2="433.3" y2="810" stroke="#ffffff" stroke-width="16" stroke-linecap="square" />
+
+  <!-- Thin diagonal line (Left leg of A / Right leg of V) -->
+  <line x1="50" y1="950" x2="950" y2="350" stroke="#ffffff" stroke-width="16" stroke-linecap="square" />
+</svg>

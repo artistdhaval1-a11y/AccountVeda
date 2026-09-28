@@ -2,5 +2,5 @@
   "name": "AccountVeda",
   "description": "Professional bookkeeping, GST/TDS compliance, tax filing, and financial reporting solutions for businesses.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API_KEY"]
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
