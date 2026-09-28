@@ -195,8 +195,9 @@ export default function Navbar({
                   Launch Workspace Tools
                 </button>
               </li>
-            </ul>
-          </motion.div>
+              </ul>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>
