@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: accountveda
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm ci
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: APP_URL
+        value: https://accountveda.co.in
