@@ -10,7 +10,7 @@ import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Workspace from './components/Workspace';
-import logoImg from './assets/images/accountveda_logo.jpg';
+import logoImg from './assets/images/IMG_20260617_183553.png';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
