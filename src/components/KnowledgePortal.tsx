@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { BookOpen, Upload, X, Search, FileText, FileSpreadsheet, File, ExternalLink, Loader2, LogIn, CheckCircle2 } from 'lucide-react';
+import { BookOpen, Upload, X, Search, FileText, FileSpreadsheet, File, ExternalLink, Loader2, LogIn } from 'lucide-react';
 import { googleSignIn } from '../lib/auth';
 import { uploadFileToVault, makeFilePublic } from '../lib/drive';
 
