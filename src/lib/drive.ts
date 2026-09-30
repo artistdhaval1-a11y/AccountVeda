@@ -195,3 +195,16 @@ export async function deleteFileFromVault(accessToken: string, fileId: string): 
     throw error;
   }
 }
+
+
+export async function makeFilePublic(accessToken: string, fileId: string): Promise<void> {
+  const res = await fetch('https://www.googleapis.com/drive/v3/files/' + fileId + '/permissions', {
+    method: 'POST',
+    headers: { Authorization: 'Bearer ' + accessToken, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ type: 'anyone', role: 'reader', allowFileDiscovery: false }),
+  });
+  if (!res.ok) {
+    const errText = await res.text();
+    if (!errText.includes('alreadyExists')) throw new Error('Could not make knowledge file public: ' + errText);
+  }
+}
