@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Calculator } from 'lucide-react';
+import { Menu, X, Calculator, BookOpen } from 'lucide-react';
 
 interface NavbarProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   onOpenWorkspace: () => void;
+  onOpenKnowledge: () => void;
   logo: string;
 }
 
@@ -13,6 +14,7 @@ export default function Navbar({
   activeTab, 
   setActiveTab, 
   onOpenWorkspace,
+  onOpenKnowledge,
   logo
 }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -113,6 +115,11 @@ export default function Navbar({
             </li>
           ))}
           <li>
+            <button id="nav-knowledge-btn" onClick={onOpenKnowledge} className="px-5 py-2 text-xs font-bold tracking-widest uppercase text-primary bg-white hover:bg-light border border-primary/20 rounded-sm transition-all flex items-center gap-1.5 cursor-pointer shadow-sm focus:outline-none">
+              <BookOpen className="w-3.5 h-3.5" /> Knowledge Portal
+            </button>
+          </li>
+          <li>
             <button
               id="nav-calc-btn"
               onClick={onOpenWorkspace}
@@ -126,6 +133,7 @@ export default function Navbar({
 
         {/* Mobile Action Controls */}
         <div className="flex items-center gap-3 lg:hidden">
+          <button id="mobile-knowledge-trigger" onClick={onOpenKnowledge} className="p-2 text-primary bg-light hover:bg-secondary hover:text-white rounded-lg transition-colors focus:outline-none" title="Knowledge Portal"><BookOpen className="w-4 h-4" /></button>
           <button
             id="mobile-calc-trigger"
             onClick={onOpenWorkspace}
@@ -182,7 +190,8 @@ export default function Navbar({
                   </button>
                 </li>
               ))}
-              <li className="pt-2">
+              <li className="pt-2"><button id="mobile-drawer-knowledge-btn" onClick={() => { setIsOpen(false); onOpenKnowledge(); }} className="w-full py-3 bg-light text-primary border border-primary/10 font-bold rounded-xl flex items-center justify-center gap-2"><BookOpen className="w-4 h-4" /> Knowledge Portal</button></li>
+              <li>
                 <button
                   id="mobile-drawer-calc-btn"
                   onClick={() => {
