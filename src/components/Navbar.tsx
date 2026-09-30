@@ -62,9 +62,9 @@ export default function Navbar({
           : 'bg-transparent py-6'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+      <div className="max-w-[1500px] mx-auto px-5 lg:px-8 flex items-center gap-6">
         {/* Logo */}
-        <div className="flex items-center gap-2.5 select-none">
+        <div className="flex items-center gap-2.5 select-none shrink-0">
           <div className="relative w-9 h-9 rounded-md overflow-hidden flex items-center justify-center shadow-sm bg-neutral-100 border border-primary/5 select-none">
             <img 
               src={logo} 
@@ -94,12 +94,12 @@ export default function Navbar({
         </div>
 
         {/* Desktop Navigation */}
-        <ul className="hidden lg:flex items-center gap-8">
+        <ul className="hidden lg:flex flex-1 items-center justify-end gap-4 xl:gap-5 min-w-0">
           {navItems.map((item) => (
             <li key={item.id}>
               <button
                 onClick={() => handleNavClick(item.id)}
-                className={`text-xs font-bold tracking-wider uppercase hover:text-secondary transition-colors cursor-pointer relative py-1 focus:outline-none ${
+                className={`text-[11px] xl:text-xs font-bold tracking-wider uppercase whitespace-nowrap hover:text-secondary transition-colors cursor-pointer relative py-1 focus:outline-none ${
                   activeTab === item.id ? 'text-primary' : 'text-gray-500/80'
                 }`}
               >
@@ -115,18 +115,18 @@ export default function Navbar({
             </li>
           ))}
           <li>
-            <button id="nav-knowledge-btn" onClick={onOpenKnowledge} className="px-5 py-2 text-xs font-bold tracking-widest uppercase text-primary bg-white hover:bg-light border border-primary/20 rounded-sm transition-all flex items-center gap-1.5 cursor-pointer shadow-sm focus:outline-none">
-              <BookOpen className="w-3.5 h-3.5" /> Knowledge Portal
+            <button id="nav-knowledge-btn" onClick={onOpenKnowledge} className="w-[168px] xl:w-[188px] min-h-[48px] px-3 py-2 text-[11px] xl:text-xs font-bold tracking-[0.14em] uppercase leading-tight text-primary bg-white hover:bg-light border border-primary/20 rounded-md transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm focus:outline-none">
+              <BookOpen className="w-3.5 h-3.5 shrink-0" /><span>Knowledge<br className="hidden xl:block" /> Portal</span>
             </button>
           </li>
           <li>
             <button
               id="nav-calc-btn"
               onClick={onOpenWorkspace}
-              className="px-5 py-2 text-xs font-bold tracking-widest uppercase text-white bg-primary hover:bg-secondary rounded-sm transition-all flex items-center gap-1.5 cursor-pointer shadow-sm focus:outline-none"
+              className="w-[168px] xl:w-[188px] min-h-[48px] px-3 py-2 text-[11px] xl:text-xs font-bold tracking-[0.14em] uppercase leading-tight text-white bg-primary hover:bg-secondary rounded-md transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm focus:outline-none"
             >
-              <Calculator className="w-3.5 h-3.5" />
-              Tax Workspace
+              <Calculator className="w-3.5 h-3.5 shrink-0" />
+              <span>Tax Workspace</span>
             </button>
           </li>
         </ul>
