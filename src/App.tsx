@@ -10,11 +10,13 @@ import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Workspace from './components/Workspace';
+import KnowledgePortal from './components/KnowledgePortal';
 import logoImg from './assets/images/IMG_20260617_183553.png';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [isWorkspaceOpen, setIsWorkspaceOpen] = useState(false);
+  const [isKnowledgeOpen, setIsKnowledgeOpen] = useState(false);
   const [workspaceTab, setWorkspaceTab] = useState<'gst' | 'tax' | 'deadlines'>('gst');
   const [logo, setLogo] = useState(logoImg);
   const [customChaitali, setCustomChaitali] = useState<string | undefined>(undefined);
@@ -344,6 +346,7 @@ export default function App() {
           activeTab={activeTab}
           setActiveTab={setActiveTab}
           onOpenWorkspace={() => openWorkspaceToTab('gst')}
+          onOpenKnowledge={() => setIsKnowledgeOpen(true)}
           logo={logo}
         />
 
@@ -398,6 +401,8 @@ export default function App() {
             defaultTab={workspaceTab}
           />
         )}
+
+        {isKnowledgeOpen && <KnowledgePortal isOpen={isKnowledgeOpen} onClose={() => setIsKnowledgeOpen(false)} />}
 
         {/* Floating WhatsApp CTA Widget */}
         <div className="fixed bottom-6 right-6 z-50 flex items-center group">
