@@ -182,6 +182,28 @@ async function startServer() {
     }
   });
 
+  app.get('/api/knowledge-files', async (_req, res) => {
+    try {
+      const folderId = process.env.KNOWLEDGE_DRIVE_FOLDER_ID;
+      const apiKey = process.env.GOOGLE_DRIVE_API_KEY;
+      if (!folderId || !apiKey) return res.json({ configured: false, files: [] });
+      const query = encodeURIComponent("'" + folderId + "' in parents and trashed = false");
+      const fields = encodeURIComponent('files(id,name,mimeType,size,createdTime,modifiedTime,description)');
+      const url = 'https://www.googleapis.com/drive/v3/files?q=' + query + '&fields=' + fields + '&orderBy=modifiedTime desc&key=' + encodeURIComponent(apiKey);
+      const response = await fetch(url);
+      if (!response.ok) return res.status(502).json({ configured: true, files: [], error: await response.text() });
+      const data = await response.json();
+      const files = (data.files || []).map((file: any) => ({
+        id: file.id, name: file.name, mimeType: file.mimeType, size: file.size,
+        createdTime: file.createdTime, modifiedTime: file.modifiedTime, description: file.description,
+        viewUrl: 'https://drive.google.com/file/d/' + file.id + '/view',
+      }));
+      return res.json({ configured: true, files });
+    } catch (error: any) {
+      return res.status(500).json({ configured: true, files: [], error: error.message || 'Internal server error' });
+    }
+  });
+
   // Serve Vite in development, static files in production
   if (process.env.NODE_ENV !== 'production') {
     const vite = await createViteServer({
